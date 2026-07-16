@@ -15,6 +15,44 @@ This project uses Tailwind CSS v4.1.14 via the `@tailwindcss/vite` plugin.
 - No separate `tailwind.config.js` file is used
 - Configuration is handled through the Vite plugin
 
+## TypeScript Formatting and Style
+
+The project enforces consistent TypeScript formatting through **ESLint** (`npm run lint`). All TypeScript and Astro files must pass linting before commit.
+
+### TypeScript Conventions
+
+- **Explicit types**: All function parameters and return values must have explicit type annotations
+  - ✅ `function getAllGames(db: Database): Promise<Game[]>`
+  - ❌ `function getAllGames(db) { }`
+- **Exported functions**: Must have JSDoc/TSDoc comment blocks (see [`comments.instructions.md`](comments.instructions.md))
+- **Naming**:
+  - Use camelCase for variables and functions
+  - Use PascalCase for types, interfaces, and classes
+  - Use UPPER_SNAKE_CASE for constants
+- **Imports**:
+  - Group imports: external packages first, then relative imports
+  - Use explicit named imports, not `import *` where possible
+  - Remove unused imports (ESLint enforces this)
+- **Spacing**:
+  - 2 spaces for indentation (enforced by Prettier via ESLint)
+  - Consistent spacing around operators and control structures
+- **Comments**:
+  - Comment *why*, not *what* (see [`comments.instructions.md`](comments.instructions.md))
+  - Every exported function needs a JSDoc block
+  - Remove comments that merely restate code
+
+### ESLint Configuration
+
+ESLint rules enforce style consistency. Key enforced rules:
+
+- `@typescript-eslint/explicit-function-return-types` — Functions must have explicit return types
+- `@typescript-eslint/explicit-member-accessibility` — Class members must have explicit accessibility (public/private)
+- `no-unused-vars` / `@typescript-eslint/no-unused-vars` — Unused variables and imports are disallowed
+- `@typescript-eslint/naming-convention` — Enforce camelCase, PascalCase, and UPPER_SNAKE_CASE conventions
+- `no-var` — Use `const` and `let`, never `var`
+
+Run `npm run lint` to check compliance. Many issues can be auto-fixed with `npm run lint -- --fix`.
+
 ## Dark Theme Styling
 
 ALL UI components MUST use dark theme colors:

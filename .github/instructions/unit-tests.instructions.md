@@ -19,6 +19,7 @@ Unit tests run with **Vitest** (`npm run test:unit`). They cover the two highest
 - Name pattern: `<module>.test.ts`.
 - Use `describe('<module / function>')` blocks and `it('does X when Y')` cases.
 - Add type annotations on helpers and fixtures — this codebase requires explicit types.
+- Keep comments minimal: explain non-obvious test logic or workarounds, not the test steps themselves (see [`comments.instructions.md`](comments.instructions.md))
 
 ## Testing Pure Transforms
 

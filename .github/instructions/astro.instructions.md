@@ -109,10 +109,41 @@ There is no Svelte/React layer. When a page genuinely needs client behaviour, ad
 ## TypeScript
 
 - Use TypeScript for type-safe props
-- Define `Props` interface in frontmatter
+- Define `Props` interface in frontmatter with a JSDoc comment block describing the component's contract
 - Type component imports and helper return values
 - Run `npx astro sync` to (re)generate route/content types before linting or type-checking
 - `.astro` files are type-checked by `npm run typecheck:astro` (which runs `astro sync` then `astro check`), on the classic `typescript` package. The pure TypeScript in `db/`, `src/lib/`, and `src/types/` is type-checked separately by `npm run typecheck` (the native TS 7 compiler, `tsgo`), which does **not** process `.astro` files.
+
+### Component Props Documentation
+
+Every **reusable `.astro` component** must document its `Props` interface so the component API is self-explanatory:
+
+```astro
+---
+/**
+ * Displays a game card with title, cover image, and category badge.
+ * 
+ * @prop game - The game object (contains title, cover, publisher, category)
+ * @prop featured - If true, renders with an accent border and featured styling
+ */
+interface Props {
+  game: Game;
+  featured?: boolean;
+}
+
+const { game, featured } = Astro.props;
+---
+
+<article class={featured ? 'featured-card' : 'card'}>
+  {/* … */}
+</article>
+```
+
+- Add a comment block **above** the `Props` interface describing what the component does
+- Document each prop with `@prop name - description`
+- For optional props, mention defaults or when they're useful
+- Page-only components (in `src/pages/`) don't require Props documentation; reusable components do
+- See [`comments.instructions.md`](comments.instructions.md) for full documentation standards
 
 ## Best Practices
 
