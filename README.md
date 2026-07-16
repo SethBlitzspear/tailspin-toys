@@ -110,6 +110,20 @@ The **quality-checks** skill (`.github/skills/quality-checks/SKILL.md`) wraps th
 - Diagnosing test failures (port conflicts, stale servers, flaky tests, CI divergence)
 - Validating readiness before commits, pushes, or merges
 
+## Coding Standards
+
+This project maintains clear, consistent coding standards documented in `.github/instructions/`:
+
+- **[`comments.instructions.md`](.github/instructions/comments.instructions.md)** — Comment philosophy (comment *why*, not *what*), TSDoc/JSDoc for exported functions, and component Props documentation
+- **[`drizzle.instructions.md`](.github/instructions/drizzle.instructions.md)** — Data layer patterns and JSDoc requirements for helpers
+- **[`astro.instructions.md`](.github/instructions/astro.instructions.md)** — Astro component and page patterns, including Props documentation
+- **[`style.instructions.md`](.github/instructions/style.instructions.md)** — Tailwind CSS, TypeScript formatting, and ESLint conventions
+- **[`ui.instructions.md`](.github/instructions/ui.instructions.md)** — UI component strategy, testability, and accessibility
+- **[`unit-tests.instructions.md`](.github/instructions/unit-tests.instructions.md)** — Vitest unit test guidelines
+- **[`playwright.instructions.md`](.github/instructions/playwright.instructions.md)** — Playwright E2E test standards
+
+Before contributing, review the relevant instruction files for your task. All code must pass linting with `npm run lint` (ESLint enforces TypeScript conventions).
+
 ## License 
 
 This project is licensed under the terms of the MIT open source license. Please refer to the [LICENSE](./LICENSE) for the full terms.
